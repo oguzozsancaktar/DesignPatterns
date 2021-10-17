@@ -12,6 +12,9 @@ import creationalDesignPatterns.Factory.Factory.Logistics;
 import creationalDesignPatterns.Factory.Factory.RoadLogistics;
 import creationalDesignPatterns.Factory.Factory.SeaLogistics;
 import creationalDesignPatterns.Factory.Model.LogisticType;
+import creationalDesignPatterns.Prototype.Factory.BundledShapeCache;
+import creationalDesignPatterns.Prototype.Model.Circle;
+import creationalDesignPatterns.Prototype.Model.Shape;
 
 public class Main {
 
@@ -58,10 +61,46 @@ public class Main {
 		logistic.planDelivery();
 	}
 	
+	static void prototype() {
+		Circle circle = new Circle();
+		circle.x = 5;
+		circle.y = 10;
+		circle.radius = 15;
+		circle.color = "red";
+		
+		Circle anotherCircle = (Circle) circle.clone();
+		
+		if(circle != anotherCircle) {
+			System.out.println("Circles are different!");
+		}
+		
+		if(circle.equals(anotherCircle)) {
+			System.out.println("Circles are equals!");
+		}
+	}
+	
+	static void prototype2() {
+		BundledShapeCache cache = new BundledShapeCache();
+		
+		Shape rectangle = cache.get("Medium blue rectangle");
+		Shape anotherRectangle = cache.get("Medium blue rectangle");
+		
+		if(rectangle != anotherRectangle) {
+			System.out.println("Rectangles are different!");
+		}
+		
+		if(rectangle.equals(anotherRectangle)) {
+			System.out.println("Rectangles are equals!");
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		abstractFactory();
 		builder();
 		factory();
+		prototype();
+		prototype2();
 	}
 
 }
