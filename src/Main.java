@@ -15,6 +15,7 @@ import creationalDesignPatterns.Factory.Model.LogisticType;
 import creationalDesignPatterns.Prototype.Factory.BundledShapeCache;
 import creationalDesignPatterns.Prototype.Model.Circle;
 import creationalDesignPatterns.Prototype.Model.Shape;
+import creationalDesignPatterns.Singleton.Singleton;
 
 public class Main {
 
@@ -95,12 +96,21 @@ public class Main {
 		
 	}
 	
+	static void singleton() {
+		Singleton singleton = Singleton.getInstance("Foo");
+		Singleton anotherSingleton = Singleton.getInstance("Bar");
+		
+		System.out.println(singleton.value);
+		System.out.println(anotherSingleton.value);
+	}
+	
 	public static void main(String[] args) {
 		abstractFactory();
 		builder();
 		factory();
 		prototype();
 		prototype2();
+		singleton();
 	}
 
 }
