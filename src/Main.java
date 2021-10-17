@@ -8,9 +8,16 @@ import creationalDesignPatterns.Builder.Builder.TriplexHouseBuilder;
 import creationalDesignPatterns.Builder.Model.DuplexHouse;
 import creationalDesignPatterns.Builder.Model.HouseType;
 import creationalDesignPatterns.Builder.Model.TriplexHouse;
+import creationalDesignPatterns.Factory.Factory.Logistics;
+import creationalDesignPatterns.Factory.Factory.RoadLogistics;
+import creationalDesignPatterns.Factory.Factory.SeaLogistics;
+import creationalDesignPatterns.Factory.Model.LogisticType;
 
 public class Main {
 
+	private static Logistics logistic;
+	
+	
 	static void abstractFactory() {
 		FurnitureFactory factory = FurnitureFactory.getFactory(FurnitureType.MODERN);
 
@@ -38,9 +45,23 @@ public class Main {
 		System.out.println(duplexHouse.toString());
 	}
 
+	static void factory() {
+		
+		LogisticType logisticType = LogisticType.Sea;
+		
+		if(logisticType == logisticType.Road) {
+			logistic = new RoadLogistics();
+		}else {
+			logistic = new SeaLogistics();
+		}
+		
+		logistic.planDelivery();
+	}
+	
 	public static void main(String[] args) {
 		abstractFactory();
 		builder();
+		factory();
 	}
 
 }
