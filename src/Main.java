@@ -16,6 +16,10 @@ import creationalDesignPatterns.Prototype.Factory.BundledShapeCache;
 import creationalDesignPatterns.Prototype.Model.Circle;
 import creationalDesignPatterns.Prototype.Model.Shape;
 import creationalDesignPatterns.Singleton.Singleton;
+import structuralDesignPatterns.Adapter.BirdAdapter;
+import structuralDesignPatterns.Adapter.PlasticToyDuck;
+import structuralDesignPatterns.Adapter.Sparrow;
+import structuralDesignPatterns.Adapter.ToyDuck;
 
 public class Main {
 
@@ -80,7 +84,7 @@ public class Main {
 		}
 	}
 	
-	static void prototype2() {
+	static void prototypeFactory() {
 		BundledShapeCache cache = new BundledShapeCache();
 		
 		Shape rectangle = cache.get("Medium blue rectangle");
@@ -104,13 +108,32 @@ public class Main {
 		System.out.println(anotherSingleton.value);
 	}
 	
+	static void adapter() {
+		Sparrow sparrow = new Sparrow();
+		ToyDuck toyDuck = new PlasticToyDuck();
+		
+		/*Oyuncak ettik serceyi...*/
+		ToyDuck birdAdapter = new BirdAdapter(sparrow);
+		
+		System.out.println("Sparrow...");
+		sparrow.fly();
+		sparrow.makeSound();
+		
+		System.out.println("ToyDuck...");
+		toyDuck.squeak();
+		
+		System.out.println("BirdAdapter...");
+		birdAdapter.squeak();
+	}
+	
 	public static void main(String[] args) {
 		abstractFactory();
 		builder();
 		factory();
 		prototype();
-		prototype2();
+		prototypeFactory();
 		singleton();
+		adapter();
 	}
 
 }
