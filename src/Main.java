@@ -20,6 +20,10 @@ import structuralDesignPatterns.Adapter.BirdAdapter;
 import structuralDesignPatterns.Adapter.PlasticToyDuck;
 import structuralDesignPatterns.Adapter.Sparrow;
 import structuralDesignPatterns.Adapter.ToyDuck;
+import structuralDesignPatterns.Bridge.AdvancedRemote;
+import structuralDesignPatterns.Bridge.BasicRemote;
+import structuralDesignPatterns.Bridge.Device;
+import structuralDesignPatterns.Bridge.TV;
 
 public class Main {
 
@@ -126,14 +130,35 @@ public class Main {
 		birdAdapter.squeak();
 	}
 	
+	static void bridge() {
+		
+		Device device = new TV();
+		
+		System.out.println("Tests with basic remote.");
+        BasicRemote basicRemote = new BasicRemote(device);
+        basicRemote.power();
+        device.printState();
+
+        System.out.println("Tests with advanced remote.");
+        AdvancedRemote advancedRemote = new AdvancedRemote(device);
+        advancedRemote.power();
+        advancedRemote.mute();
+        device.printState();
+	}
+	
 	public static void main(String[] args) {
+		
+		//Creational design patterns
 		abstractFactory();
 		builder();
 		factory();
 		prototype();
 		prototypeFactory();
 		singleton();
+		
+		//Structural design patterns
 		adapter();
+		bridge();
 	}
 
 }
