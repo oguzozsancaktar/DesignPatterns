@@ -24,6 +24,9 @@ import structuralDesignPatterns.Bridge.AdvancedRemote;
 import structuralDesignPatterns.Bridge.BasicRemote;
 import structuralDesignPatterns.Bridge.Device;
 import structuralDesignPatterns.Bridge.TV;
+import structuralDesignPatterns.Composite.Box;
+import structuralDesignPatterns.Composite.Item;
+import structuralDesignPatterns.Composite.Product;
 
 public class Main {
 
@@ -146,6 +149,29 @@ public class Main {
         device.printState();
 	}
 	
+	static void composite() {
+		Box smallBox = new Box();
+		Box mediumBox = new Box();
+		Box bigBox = new Box();
+		
+		Item product1 = new Product("p1", 10);
+		Item product2 = new Product("p2", 7.5);
+		Item product3 = new Product("p3", 2.5);
+		Item product4 = new Product("p4", 5);
+		
+		smallBox.addItem(product1);
+		smallBox.addItem(product2);
+		
+		mediumBox.addItem(product3);
+		mediumBox.addItem(product4);
+		mediumBox.addItem(smallBox);
+		
+		bigBox.addItem(product1);
+		bigBox.addItem(mediumBox);
+		
+		System.out.println("Total price is : " + bigBox.getPrice());		
+	}
+	
 	public static void main(String[] args) {
 		
 		//Creational design patterns
@@ -159,6 +185,7 @@ public class Main {
 		//Structural design patterns
 		adapter();
 		bridge();
+		composite();
 	}
 
 }
