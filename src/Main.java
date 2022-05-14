@@ -199,7 +199,7 @@ public class Main {
 		prototypeFactory();
 		singleton();
 
-		// Structural design patterns
+		// Structural design patterns 
 		adapter();
 		bridge();
 		composite();
